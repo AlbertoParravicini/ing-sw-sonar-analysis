@@ -10,10 +10,10 @@ RUN apt update
 # RUN apt -y install default-jre
 # RUN apt -y install default-jdk
 
-RUN curl -O https://download.java.net/java/GA/jdk14/076bab302c7b4508975440c56f6cc26a/36/GPL/openjdk-14_linux-x64_bin.tar.gz
-RUN tar xvf openjdk-14_linux-x64_bin.tar.gz
-RUN mv jdk-14 /opt/
-ENV JAVA_HOME=/opt/jdk-14
+RUN curl -O https://download.java.net/java/GA/jdk15.0.2/0d1cfde4252546c6931946de8db48ee2/7/GPL/openjdk-15.0.2_linux-x64_bin.tar.gz
+RUN tar -xvf openjdk-15.0.2_linux-x64_bin.tar.gz
+RUN mv jdk-15.0.2 /opt/
+ENV JAVA_HOME=/opt/jdk-15.0.2
 ENV PATH="${PATH}:${JAVA_HOME}/bin"
 CMD echo java -version
 CMD echo ${PATH}
