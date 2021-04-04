@@ -45,15 +45,12 @@ if __name__ == "__main__":
     df = pd.read_csv(groups_file, header=None).dropna()
     ids = []
     for index, row in df.iterrows():
-
         group_id = 'group-%02d' % int(row[0])
         ids.append(group_id)
-
 
     sonar_url = 'http://localhost:9000/api/measures/search?projectKeys=' + '%2C'.join(ids) + '&metricKeys=' + '%2C'.join(METRICS)
     resp = requests.get(sonar_url)
     data = resp.json()
-    pprint(data)
 
     os.makedirs('reports', exist_ok=True)
 

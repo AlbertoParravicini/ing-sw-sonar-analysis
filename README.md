@@ -14,6 +14,7 @@
 	* Non serve fare nuovi utenti, basta che vai in `sonarqube-<versione a caso>/bin/linux-x86-64` e fai `./sonar.sh start` poi vai su `localhost:9000`
 	* Salta tutta la roba di PostgreSQL, puoi usare il DB embedded di SonarQube
 	* Credenziali di default: `(admin, admin)`, se vuoi modificarle aggiorna anche i valori nel Dockerfile
+	* In Sonarqube (su `http://localhost:9000/`) vai su Administration, poi Security, e disattiva `Force user authentication` per potere usare l'API tramite Python
 
 ## Modifiche:
 * Cambiare i files `groups.csv` e `default_pom.xml` con quelli del proprio scaglione
