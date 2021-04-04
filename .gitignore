@@ -1,3 +1,5 @@
 repos/
 logs/
 reports/
+__pycache__
+github_access_token.txt

@@ -4,7 +4,7 @@ import requests
 import argparse
 
 # Token used to access all github repositories
-GITHUB_ACCESS_TOKEN = '1a64a9d30164eac48c5b365029a7fe93ef0cc296'
+GITHUB_ACCESS_TOKEN_FILE = 'github_access_token.txt'
 SONAR_URL = 'http://localhost:9000/api/projects/create'
 DEFAULT_GROUPS_FILE = "groups/groups.csv"
 
@@ -25,12 +25,16 @@ if __name__ == "__main__":
     debug = args.debug
     groups_file = args.groups_file
 
+    with open(GITHUB_ACCESS_TOKEN_FILE, 'r') as f:
+        gihub_access_token = f.readline().strip()
+    print(f"read access token {gihub_access_token}")
+
     df = pd.read_csv(groups_file, header=None).dropna()
 
     for index, row in df.iterrows():
 
         group_id = 'group-%02d' % int(row[0])
-        url_repo = str(row[1]).replace('https://github.com/', 'https://' + GITHUB_ACCESS_TOKEN + '@github.com/')
+        url_repo = str(row[1]).replace('https://github.com/', 'https://' + gihub_access_token + '@github.com/')
         dir_name = os.path.basename(url_repo)
 
         print(group_id, url_repo, dir_name)
