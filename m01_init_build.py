@@ -9,9 +9,9 @@ SONAR_URL = 'http://localhost:9000/api/projects/create'
 DEFAULT_GROUPS_FILE = "groups/groups.csv"
 
 BUILD_SCRIPT = '#! /bin/bash\n' \
-             'log_folder="build_logs_$(date +%Y-%m-%d_%H-%M-%S)"\n' \
-             'mkdir -p logs\n' \
-             'mkdir -p logs/$log_folder\n'
+               'log_folder="build_logs_$(date +%Y-%m-%d_%H-%M-%S)"\n' \
+               'mkdir -p logs\n' \
+               'mkdir -p logs/$log_folder\n'
 
 if __name__ == "__main__":
 
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
         group_id = 'group-%02d' % int(row[0])
         url_repo = str(row[1]).replace('https://github.com/', 'https://' + gihub_access_token + '@github.com/')
-        dir_name = os.path.basename(url_repo)
+        dir_name = os.path.basename(url_repo.rstrip(".git"))  # Remove any trailing ".git" in the directory name;
 
         print(group_id, url_repo, dir_name)
 

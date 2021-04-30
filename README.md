@@ -23,13 +23,14 @@
 * (ottenere token: `https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line`, metti solo cose di lettura)
 
 ## Esecuzione:
-* `python m01_init_build.py` per creare in automatico i progetti su sonarqube tramite APIs e creare il file `m02_build.sh`
+* `python m01_init_build.py` per creare in automatico i progetti su sonarqube tramite APIs e creare il file `m02_build.sh`. Prima di eseguire lo script, ricorda di attivare `sonar` (`./sonar.sh start` dalla cartella di `sonar`, vedi sopra), e poi aprilo nel browser su `localhost:9000`.
 * `./m02_build.sh` per creare il docker container in cui ad uno ad uno vengono testati i progetti con Maven e inviati i dati a sonarqube
 * `python m03_clean_logs.py` per pulire i log in automatico e mantenere solo le informazioni d'interesse
 * `python m04_sonar_reports.py` per salvare tutti i dati di sonarqube in un file `.csv`
 
 ## OTHER DOCKER COMMANDS
-`docker build . -t <TAG> -f /path/to/Dockerfile`
-`docker run -d <TAG>`
-`docker container ls -a`
-`docker rm <ID>`
+* `docker build . -t <TAG> -f /path/to/Dockerfile`
+* `docker run -d <TAG>`
+* `docker container ls -a`
+* `docker rm <ID>`
+* `docker system prune -a -f`: Docker crea una valanga di file temporanei in `/var/lib/docker/overlay2`. Di tanto in tanto, cancellali tutti con questo comando

@@ -8,7 +8,7 @@ raw_files = glob("logs/*/*RAW.txt")
 for filepath in raw_files:
 
     new_file = ''
-    build = "SUCCESS"
+    build = "NODATA"
     with open(filepath) as fp:
         for line in fp:
 
@@ -23,7 +23,8 @@ for filepath in raw_files:
                 # CHECK FAILURES
                 if line.endswith("BUILD FAILURE\n"):
                     build = "FAILURE"
-
+                elif line.endswith("BUILD SUCCESS\n"):
+                    build = "SUCCESS"
     # CREATE THE LOG AND REMOVE THE RAW FILE
     with open(filepath.replace('RAW.txt', build + '.txt'), 'w') as f:
         f.write(new_file)

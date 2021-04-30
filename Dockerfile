@@ -30,7 +30,7 @@ RUN mkdir default_pom
 COPY default_pom.xml default_pom/pom.xml
 WORKDIR default_pom
 RUN mvn install
-WORKDIR ~
+WORKDIR ..
 
 # Install git
 RUN apt -y install git
@@ -52,9 +52,12 @@ RUN git clone ${GROUP_REPO}
 # Enter directory
 WORKDIR ${GROUP_DIR}
 
+RUN rm -rf *.idea
+RUN rm -rf *.iml
+
 # Execute tests
 RUN mvn clean test sonar:sonar -Dsonar.projectKey=${GROUP_ID} -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin ; exit 0
 
 # Delete files
-WORKDIR ~
+WORKDIR ..
 RUN rm -rf ${GROUP_DIR}
